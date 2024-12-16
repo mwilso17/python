@@ -8,22 +8,21 @@ deck = {"Ace of Spades": ["black", "spade"], "2 of Spades": ["black", "spade"], 
 colors = ["red", "black"]
 suits = ["heart", "spade", "diamond", "club"]
 
-color_guess = random.choice(colors)
-
-print(len(deck))
+color_guess = str(random.choice(colors))
 
 print("There are 52 cards in a standard deck of cards. Please select 1 and I will try to guess it.")
+print("'Aces' are not considered a face card and has a value of 1.")
 print("When I ask a question, please respond with yes or no (y/n).")
 
-first_question = input(f"Is your card {color_guess}")
+first_question = input(f"Is your card {color_guess} (y/n): ")
 
 if first_question == "y":
   for card, color in list(deck.items()):
-    if color[0] != str(color_guess):
+    if color[0] != color_guess:
       del deck[card]
 else:
   for card, color in list(deck.items()):
-      if color[0] == str(color_guess):
+      if color[0] == color_guess:
         del deck[card]
 
 print(deck)
