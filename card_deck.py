@@ -1,9 +1,9 @@
 import random
 
-deck = {"Ace of Spades": ["black", "spade"], "2 of Spades": ["black", "spade"], "3 of Spades": ["black", "spade"], "4 of Spades": ["black", "spade"], "5 of Spades": ["black", "spade"], "6 of Spades": ["black", "spade"], "7 of Spades": ["black", "spade"], "8 of Spades": ["black", "spade"], "9 or Spades": ["black", "spade"], "10 of Spades": ["black", "spade"], "Jack of Spades": ["black", "spade"], "Queen of Spades": ["black", "spade"], "Kings of Spades": ["black", "spade"],
-         "Ace of Hearts": ["red", "heart"], "2 of Hearts": ["red", "heart"], "3 of Hearts": ["red", "heart"], "4 of Hearts": ["red", "heart"], "5 of Hearts": ["red", "heart"], "6 of Hearts": ["red", "heart"], "7 of Hearts": ["red", "heart"], "8 of Hearts": ["red", "heart"], "9 or Hearts": ["red", "heart"], "10 of Hearts": ["red", "heart"], "Jack of Hearts": ["red", "heart"], "Queen of Hearts": ["red", "heart"], "Kings of Hearts": ["red", "heart"],
-         "Ace of Clubs": ["black", "club"], "2 of Clubs": ["black", "club"], "3 of Clubs": ["black", "club"], "4 of Clubs": ["black", "club"], "5 of Clubs": ["black", "club"], "6 of Clubs": ["black", "club"], "7 of Clubs": ["black", "club"], "8 of Clubs": ["black", "club"], "9 or Clubs": ["black", "club"], "10 of Clubs": ["black", "club"], "Jack of Clubs": ["black", "club"], "Queen of Clubs": ["black", "club"], "Kings of Clubs": ["black", "club"],
-         "Ace of Diamonds": ["red", "diamond"], "2 of Diamonds": ["red", "diamond"], "3 of Diamonds": ["red", "diamond"], "4 of Diamonds": ["red", "diamond"], "5 of Diamonds": ["red", "diamond"], "6 of Diamonds": ["red", "diamond"], "7 of Diamonds": ["red", "diamond"], "8 of Diamonds": ["red", "diamond"], "9 or Diamonds": ["red", "diamond"], "10 of Diamonds": ["red", "diamond"], "Jack of Diamonds": ["red", "diamond"], "Queen of Diamonds": ["red", "diamond"], "Kings of Diamonds": ["red", "diamond"]}
+deck = {"Ace of Spades": ["black", "spade", "numeric"], "2 of Spades": ["black", "spade", "numeric"], "3 of Spades": ["black", "spade", "numeric"], "4 of Spades": ["black", "spade", "numeric"], "5 of Spades": ["black", "spade", "numeric"], "6 of Spades": ["black", "spade", "numeric"], "7 of Spades": ["black", "spade", "numeric"], "8 of Spades": ["black", "spade", "numeric"], "9 or Spades": ["black", "spade", "numeric"], "10 of Spades": ["black", "spade", "numeric"], "Jack of Spades": ["black", "spade", "face"], "Queen of Spades": ["black", "spade", "face"], "Kings of Spades": ["black", "spade", "face"],
+         "Ace of Hearts": ["red", "heart", "numeric"], "2 of Hearts": ["red", "heart", "numeric"], "3 of Hearts": ["red", "heart", "numeric"], "4 of Hearts": ["red", "heart", "numeric"], "5 of Hearts": ["red", "heart", "numeric"], "6 of Hearts": ["red", "heart", "numeric"], "7 of Hearts": ["red", "heart", "numeric"], "8 of Hearts": ["red", "heart", "numeric"], "9 or Hearts": ["red", "heart", "numeric"], "10 of Hearts": ["red", "heart", "numeric"], "Jack of Hearts": ["red", "heart", "face"], "Queen of Hearts": ["red", "heart", "face"], "Kings of Hearts": ["red", "heart", "face"],
+         "Ace of Clubs": ["black", "club", "numeric"], "2 of Clubs": ["black", "club", "numeric"], "3 of Clubs": ["black", "club", "numeric"], "4 of Clubs": ["black", "club", "numeric"], "5 of Clubs": ["black", "club", "numeric"], "6 of Clubs": ["black", "club", "numeric"], "7 of Clubs": ["black", "club", "numeric"], "8 of Clubs": ["black", "club", "numeric"], "9 or Clubs": ["black", "club", "numeric"], "10 of Clubs": ["black", "club", "numeric"], "Jack of Clubs": ["black", "club", "face"], "Queen of Clubs": ["black", "club", "face"], "Kings of Clubs": ["black", "club", "face"],
+         "Ace of Diamonds": ["red", "diamond", "numeric"], "2 of Diamonds": ["red", "diamond", "numeric"], "3 of Diamonds": ["red", "diamond", "numeric"], "4 of Diamonds": ["red", "diamond", "numeric"], "5 of Diamonds": ["red", "diamond", "numeric"], "6 of Diamonds": ["red", "diamond", "numeric"], "7 of Diamonds": ["red", "diamond", "numeric"], "8 of Diamonds": ["red", "diamond", "numeric"], "9 or Diamonds": ["red", "diamond", "numeric"], "10 of Diamonds": ["red", "diamond", "numeric"], "Jack of Diamonds": ["red", "diamond", "face"], "Queen of Diamonds": ["red", "diamond", "face"], "Kings of Diamonds": ["red", "diamond", "face"]}
 
 colors = ["red", "black"]
 suits = []
@@ -31,6 +31,7 @@ if (color_guess == "red" and first_question == "y") or (color_guess == "black" a
 if (color_guess == "black" and first_question == "y") or (color_guess == "red" and first_question == "n"):
   suits = ["spade", "club"]
 
+
 suit_guess = str(random.choice(suits))
 
 second_question = input(f"Is your card a {suit_guess}? (y/n): ")
@@ -43,3 +44,19 @@ else:
   for card, suit in list(deck.items()):
       if suit[1] == suit_guess:
         del deck[card]
+
+print(deck)
+
+
+third_question = input(f"Is your card a face card? (y/n): ")
+
+if third_question == "y":
+  for card, type in list(deck.items()):
+    if type[2] != "face":
+      del deck[card]
+else:
+  for card, type in list(deck.items()):
+      if type[2] != "numeric":
+        del deck[card]
+
+print(deck)
