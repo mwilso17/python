@@ -6,15 +6,16 @@ deck = {"Ace of Spades": ["black", "spade"], "2 of Spades": ["black", "spade"], 
          "Ace of Diamonds": ["red", "diamond"], "2 of Diamonds": ["red", "diamond"], "3 of Diamonds": ["red", "diamond"], "4 of Diamonds": ["red", "diamond"], "5 of Diamonds": ["red", "diamond"], "6 of Diamonds": ["red", "diamond"], "7 of Diamonds": ["red", "diamond"], "8 of Diamonds": ["red", "diamond"], "9 or Diamonds": ["red", "diamond"], "10 of Diamonds": ["red", "diamond"], "Jack of Diamonds": ["red", "diamond"], "Queen of Diamonds": ["red", "diamond"], "Kings of Diamonds": ["red", "diamond"]}
 
 colors = ["red", "black"]
-suits = ["heart", "spade", "diamond", "club"]
+suits = []
 
 color_guess = str(random.choice(colors))
+
 
 print("There are 52 cards in a standard deck of cards. Please select 1 and I will try to guess it.")
 print("'Aces' are not considered a face card and has a value of 1.")
 print("When I ask a question, please respond with yes or no (y/n).")
 
-first_question = input(f"Is your card {color_guess} (y/n): ")
+first_question = input(f"Is your card {color_guess}? (y/n): ")
 
 if first_question == "y":
   for card, color in list(deck.items()):
@@ -25,10 +26,20 @@ else:
       if color[0] == color_guess:
         del deck[card]
 
-print(deck)
+if (color_guess == "red" and first_question == "y") or (color_guess == "black" and first_question == "n"):
+  suits = ["heart", "diamond"]
+if (color_guess == "black" and first_question == "y") or (color_guess == "red" and first_question == "n"):
+  suits = ["spade", "club"]
 
-##for card, suit in list(deck.items()):
-##  if suit[1] == 'club':
-##    del deck[card]
-##
-##print(len(deck))
+suit_guess = str(random.choice(suits))
+
+second_question = input(f"Is your card a {suit_guess}? (y/n): ")
+
+if second_question == "y":
+  for card, suit in list(deck.items()):
+    if suit[1] != suit_guess:
+      del deck[card]
+else:
+  for card, suit in list(deck.items()):
+      if suit[1] == suit_guess:
+        del deck[card]
