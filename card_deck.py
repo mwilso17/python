@@ -54,5 +54,18 @@ if third_question == "y":
 
   card_list = list(deck.keys())
   computer_guess = random.choice(card_list)
-  print(f"Is your card the {computer_guess}?")
-                       
+  card_list == card_list.remove(computer_guess)
+  first_guess = input(f"Is your card the {computer_guess}? (y/n): ")
+
+  if first_guess == "y":
+    print("I have guessed your card on the first try!")
+  else:
+    computer_guess_2 = random.choice(card_list)
+    card_list == card_list.remove(computer_guess_2)
+    second_guess = input(f"Is your card the {computer_guess_2}? (y/n): ")
+    
+    if second_guess == "y":
+      print("I have guessed your card on the second try!")
+    else:
+      final_guess = random.choice(card_list)
+      print(f"Then your card must be the {final_guess}!")
