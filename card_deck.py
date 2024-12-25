@@ -1,9 +1,14 @@
+# This program builds uses a dictionary to build a deck of cards. The player then thinks of one card from the deck
+# and the computer will attempt to guess the card the player is thinking of. This program intentionally uses
+# a series of if else statements to achieve its goals. Another program will demonstrate the same concept 
+# while using OOP and better methodologies. 
+
 import random
 
-deck = {"Ace of Spades": ["black", "spade", "numeric", 1], "2 of Spades": ["black", "spade", "numeric", 2], "3 of Spades": ["black", "spade", "numeric", 3], "4 of Spades": ["black", "spade", "numeric", 4], "5 of Spades": ["black", "spade", "numeric", 5], "6 of Spades": ["black", "spade", "numeric", 6], "7 of Spades": ["black", "spade", "numeric", 7], "8 of Spades": ["black", "spade", "numeric", 8], "9 or Spades": ["black", "spade", "numeric", 9], "10 of Spades": ["black", "spade", "numeric", 10], "Jack of Spades": ["black", "spade", "face"], "Queen of Spades": ["black", "spade", "face"], "Kings of Spades": ["black", "spade", "face"],
-         "Ace of Hearts": ["red", "heart", "numeric", 1], "2 of Hearts": ["red", "heart", "numeric", 2], "3 of Hearts": ["red", "heart", "numeric", 3], "4 of Hearts": ["red", "heart", "numeric", 4], "5 of Hearts": ["red", "heart", "numeric", 5], "6 of Hearts": ["red", "heart", "numeric", 6], "7 of Hearts": ["red", "heart", "numeric", 7], "8 of Hearts": ["red", "heart", "numeric", 8], "9 or Hearts": ["red", "heart", "numeric", 9], "10 of Hearts": ["red", "heart", "numeric", 10], "Jack of Hearts": ["red", "heart", "face"], "Queen of Hearts": ["red", "heart", "face"], "Kings of Hearts": ["red", "heart", "face"],
-         "Ace of Clubs": ["black", "club", "numeric", 1], "2 of Clubs": ["black", "club", "numeric", 2], "3 of Clubs": ["black", "club", "numeric", 3], "4 of Clubs": ["black", "club", "numeric", 4], "5 of Clubs": ["black", "club", "numeric", 5], "6 of Clubs": ["black", "club", "numeric", 6], "7 of Clubs": ["black", "club", "numeric", 7], "8 of Clubs": ["black", "club", "numeric", 8], "9 or Clubs": ["black", "club", "numeric", 9], "10 of Clubs": ["black", "club", "numeric", 10], "Jack of Clubs": ["black", "club", "face"], "Queen of Clubs": ["black", "club", "face"], "Kings of Clubs": ["black", "club", "face"],
-         "Ace of Diamonds": ["red", "diamond", "numeric", 1], "2 of Diamonds": ["red", "diamond", "numeric", 2], "3 of Diamonds": ["red", "diamond", "numeric", 3], "4 of Diamonds": ["red", "diamond", "numeric", 4], "5 of Diamonds": ["red", "diamond", "numeric", 5], "6 of Diamonds": ["red", "diamond", "numeric", 6], "7 of Diamonds": ["red", "diamond", "numeric", 7], "8 of Diamonds": ["red", "diamond", "numeric", 8], "9 or Diamonds": ["red", "diamond", "numeric", 9], "10 of Diamonds": ["red", "diamond", "numeric", 10], "Jack of Diamonds": ["red", "diamond", "face"], "Queen of Diamonds": ["red", "diamond", "face"], "Kings of Diamonds": ["red", "diamond", "face"]}
+deck = {"Ace of Spades": ["black", "spade", "numeric", 1], "2 of Spades": ["black", "spade", "numeric", 2], "3 of Spades": ["black", "spade", "numeric", 3], "4 of Spades": ["black", "spade", "numeric", 4], "5 of Spades": ["black", "spade", "numeric", 5], "6 of Spades": ["black", "spade", "numeric", 6], "7 of Spades": ["black", "spade", "numeric", 7], "8 of Spades": ["black", "spade", "numeric", 8], "9 of Spades": ["black", "spade", "numeric", 9], "10 of Spades": ["black", "spade", "numeric", 10], "Jack of Spades": ["black", "spade", "face"], "Queen of Spades": ["black", "spade", "face"], "Kings of Spades": ["black", "spade", "face"],
+         "Ace of Hearts": ["red", "heart", "numeric", 1], "2 of Hearts": ["red", "heart", "numeric", 2], "3 of Hearts": ["red", "heart", "numeric", 3], "4 of Hearts": ["red", "heart", "numeric", 4], "5 of Hearts": ["red", "heart", "numeric", 5], "6 of Hearts": ["red", "heart", "numeric", 6], "7 of Hearts": ["red", "heart", "numeric", 7], "8 of Hearts": ["red", "heart", "numeric", 8], "9 of Hearts": ["red", "heart", "numeric", 9], "10 of Hearts": ["red", "heart", "numeric", 10], "Jack of Hearts": ["red", "heart", "face"], "Queen of Hearts": ["red", "heart", "face"], "Kings of Hearts": ["red", "heart", "face"],
+         "Ace of Clubs": ["black", "club", "numeric", 1], "2 of Clubs": ["black", "club", "numeric", 2], "3 of Clubs": ["black", "club", "numeric", 3], "4 of Clubs": ["black", "club", "numeric", 4], "5 of Clubs": ["black", "club", "numeric", 5], "6 of Clubs": ["black", "club", "numeric", 6], "7 of Clubs": ["black", "club", "numeric", 7], "8 of Clubs": ["black", "club", "numeric", 8], "9 of Clubs": ["black", "club", "numeric", 9], "10 of Clubs": ["black", "club", "numeric", 10], "Jack of Clubs": ["black", "club", "face"], "Queen of Clubs": ["black", "club", "face"], "Kings of Clubs": ["black", "club", "face"],
+         "Ace of Diamonds": ["red", "diamond", "numeric", 1], "2 of Diamonds": ["red", "diamond", "numeric", 2], "3 of Diamonds": ["red", "diamond", "numeric", 3], "4 of Diamonds": ["red", "diamond", "numeric", 4], "5 of Diamonds": ["red", "diamond", "numeric", 5], "6 of Diamonds": ["red", "diamond", "numeric", 6], "7 of Diamonds": ["red", "diamond", "numeric", 7], "8 of Diamonds": ["red", "diamond", "numeric", 8], "9 of Diamonds": ["red", "diamond", "numeric", 9], "10 of Diamonds": ["red", "diamond", "numeric", 10], "Jack of Diamonds": ["red", "diamond", "face"], "Queen of Diamonds": ["red", "diamond", "face"], "Kings of Diamonds": ["red", "diamond", "face"]}
 
 colors = ["red", "black"]
 suits = []
@@ -63,9 +68,91 @@ if third_question == "y":
     computer_guess_2 = random.choice(card_list)
     card_list == card_list.remove(computer_guess_2)
     second_guess = input(f"Is your card the {computer_guess_2}? (y/n): ")
-    
+
     if second_guess == "y":
       print("I have guessed your card on the second try!")
     else:
       final_guess = random.choice(card_list)
       print(f"Then your card must be the {final_guess}!")
+else:
+  for card, numeric_or_face in list(deck.items()):
+    if numeric_or_face[2] != "numeric":
+      del deck[card]
+      
+  even_odd = input("Is your card an even number? (y/n): ")
+
+  if even_odd == "y":
+    for card, even_or_odd in list(deck.items()):
+      if even_or_odd[3] % 2 != 0:
+        del deck[card]
+
+    card_list = list(deck.keys())
+    computer_guess = random.choice(card_list)
+    card_list == card_list.remove(computer_guess)
+    first_guess = input(f"Is your card the {computer_guess}? (y/n): ")
+
+    if first_guess == "y":
+      print("I have guessed your card on the first try!")
+    else:
+      computer_guess_2 = random.choice(card_list)
+      card_list == card_list.remove(computer_guess_2)
+      second_guess = input(f"Is your card the {computer_guess_2}? (y/n): ")
+
+      if second_guess == "y":
+        print("I have guessed your card on the second try!")
+      else:
+        computer_guess_3 = random.choice(card_list)
+        card_list == card_list.remove(computer_guess_3)
+        third_guess = input(f"Is your card the {computer_guess_3}? (y/n): ")
+
+        if third_guess == "y":
+          print("I have guessed your card on the third try!")
+        else:
+          computer_guess_4 = random.choice(card_list)
+          card_list == card_list.remove(computer_guess_4)
+          fourth_guess = input(f"Is your card the {computer_guess_4}? (y/n): ")
+
+          if fourth_guess == "y":
+            print("I have guessed your card on the fourth try!")
+          else:
+            final_guess = random.choice(card_list)
+            print(f"Then your card must be the {final_guess}!")
+
+          
+
+  else:
+    for card, even_or_odd in list(deck.items()):
+      if even_or_odd[3] % 2 == 0:
+        del deck[card]
+
+    card_list = list(deck.keys())
+    computer_guess = random.choice(card_list)
+    card_list == card_list.remove(computer_guess)
+    first_guess = input(f"Is your card the {computer_guess}? (y/n): ")
+
+    if first_guess == "y":
+      print("I have guessed your card on the first try!")
+    else:
+      computer_guess_2 = random.choice(card_list)
+      card_list == card_list.remove(computer_guess_2)
+      second_guess = input(f"Is your card the {computer_guess_2}? (y/n): ")
+
+      if second_guess == "y":
+        print("I have guessed your card on the second try!")
+      else:
+        computer_guess_3 = random.choice(card_list)
+        card_list == card_list.remove(computer_guess_3)
+        third_guess = input(f"Is your card the {computer_guess_3}? (y/n): ")
+
+        if third_guess == "y":
+          print("I have guessed your card on the third try!")
+        else:
+          computer_guess_4 = random.choice(card_list)
+          card_list == card_list.remove(computer_guess_4)
+          fourth_guess = input(f"Is your card the {computer_guess_4}? (y/n): ")
+
+          if fourth_guess == "y":
+            print("I have guessed your card on the fourth try!")
+          else:
+            final_guess = random.choice(card_list)
+            print(f"Then your card must be the {final_guess}!")
