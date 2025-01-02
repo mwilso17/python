@@ -15,7 +15,6 @@ class Pizza:
     #TODO: Add crust types (thin, hand tossed, new york, stuffed crust, and price accordingly)
     #TODO: Look into other ways to handle topping size price difference.
     #TODO: Add premium pizza toppings with own price list (ie: bacon, chicken, stake, and shittake mushrooms cost double the normal topping price)
-    #TODO: Add taxes! Cause taxes are a thing. 
     #TODO: Add tipping system, cause why not.
     base_price = {"small": 5.99, "medium": 9.99, "large": 11.99}
 
@@ -30,6 +29,16 @@ class Pizza:
   
   def __str__(self):
     return f"{self.size} pizza topped with {', '.join(self.toppings)} - total: ${self.price}!"
+
+
+#TODO: Tax calculates but doesn't leave trailing 0s where needed (like ordering a small plain pizza leaves sales tax at .3 instead of .30).
+def calculate_tax(sub_total, sales_tax_rate):
+
+  return round(sub_total * sales_tax_rate, 2)
+
+def calculate_total_price(sub_total, sales_tax_amount):
+
+  return sub_total + sales_tax_amount
   
 def order_food():
   size = input("What size pizza do you want? (small, medium, large): ")
@@ -51,6 +60,7 @@ def order_food():
 if __name__ == "__main__":
   print("Welcome to your local pizza restaurant!")
   order = []
+  sales_tax_rate = .05
 
   while True:
     pizza = order_food()
@@ -60,9 +70,17 @@ if __name__ == "__main__":
       break
 
   print("\nYou ordered: ")
-  total_price = 0
+  sub_total = 0
   for pizza in order:
     print(pizza)
-    total_price += pizza.price
+    sub_total += pizza.price
 
-  print(f"\nYour total price is: ${total_price}.")
+  print(f"\nYour sub total is: ${sub_total}.")
+
+  sales_tax = calculate_tax(sub_total, sales_tax_rate)
+
+  print(f"\nSales tax is: ${sales_tax}.")
+
+  total_price = calculate_total_price(sub_total, sales_tax)
+
+  print(f"\nYour total amount is: ${total_price}")
