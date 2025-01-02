@@ -13,12 +13,19 @@ class Pizza:
 
   def calculate_price(self):
     #TODO: Add crust types (thin, hand tossed, new york, stuffed crust, and price accordingly)
-    #TODO: Adjust prices for toppings based on size of pizza (ie: small = 1, medium = 1.25, large = 1.75)
+    #TODO: Look into other ways to handle topping size price difference.
     #TODO: Add premium pizza toppings with own price list (ie: bacon, chicken, stake, and shittake mushrooms cost double the normal topping price)
     #TODO: Add taxes! Cause taxes are a thing. 
     #TODO: Add tipping system, cause why not.
     base_price = {"small": 5.99, "medium": 9.99, "large": 11.99}
-    topping_price = 1
+
+    if self.size == "small":
+      topping_price = 1
+    elif self.size == "large":
+      topping_price = 2
+    elif self.size == "medium":
+      topping_price = 1.5
+
     return base_price[self.size] + (topping_price * len(self.toppings))
   
   def __str__(self):
