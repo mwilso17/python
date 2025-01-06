@@ -41,7 +41,7 @@ def calculate_tax(sub_total, sales_tax_rate):
 
 def calculate_total_price(sub_total, sales_tax_amount, delivery_fee=0):
 
-  return sub_total + sales_tax_amount + delivery_fee
+  return round(sub_total + sales_tax_amount + delivery_fee, 2)
 
 def get_valid_toppings(ordered_toppings, store_toppings):
   while True:
@@ -115,11 +115,14 @@ if __name__ == "__main__":
 
   print(f"\nSales tax is: ${sales_tax}.")
 
-  total_price = calculate_total_price(sub_total, sales_tax, delivery_fee=0)
+  if delivery_option == "y":
+    print(f"\nDelivery fee: ${delivery_fee}")
+
+  total_price = calculate_total_price(sub_total, sales_tax, delivery_fee)
 
   print(f"\nYour total amount is: ${total_price}")
 
   if delivery_option == "y":
-    print(f"We will deliver your pizza to {address} soon!")
+    print(f"\nWe will deliver your pizza to {address} soon!")
   else:
-    print("Your order will be ready for pickup in the store soon!")
+    print("\nYour order will be ready for pickup in the store soon!")
