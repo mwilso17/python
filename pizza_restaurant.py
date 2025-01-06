@@ -5,7 +5,7 @@
 #TODO: calculate costs vs sales.
 #TODO: Cash vs credit sales
 #TODO: Delivery system vs store pick up.
-store_toppings = ["mushrooms", "sausage", "done"]
+store_toppings = ["pepperoni", "bacon", "sausage", "salami", "ham", "chicken", "mushrooms", "green peppers", "black olives", "pineapple", "onions", "done"]
 
 class Pizza:
   def __init__(self, size="", crust="", toppings=None):
@@ -61,7 +61,7 @@ def order_food():
     #TODO: Find way to remove the 'done' option from the store_toppings. Doesn't really make sense but keeps the code funcitioning for now.
     #TODO: Extra thoughts: add wings, drinks, and bread items to menu.
     #TODO: Extra thoughts: Add 'out of stock' toppings and items and let customer know if a requested item is out of stock. 
-    topping = get_valid_toppings("What toppings would you like? : ", store_toppings)
+    topping = get_valid_toppings("What toppings would you like? (when finsihed, type 'done') : ", store_toppings)
     if topping.lower() == "done":
       break
     toppings.append(topping)
