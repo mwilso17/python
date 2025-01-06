@@ -58,7 +58,6 @@ def order_food():
   crust = input("What type of crust would you like? (regular, stuffed, thin): ")
   toppings = []
   while True:
-    #TODO: If someone types in multiple toppings seperated as a comma, program only tallys for 1 topping. Need to fix.
     #TODO: Program repeats the topping input line after every press of 'return'. Need it to be less repetitive.
     #TODO: Find way to remove the 'done' option from the store_toppings. Doesn't really make sense but keeps the code funcitioning for now.
     #TODO: Extra thoughts: add wings, drinks, and bread items to menu.
