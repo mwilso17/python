@@ -48,6 +48,8 @@ def get_valid_toppings(ordered_toppings, store_toppings):
     customer_toppings = input(ordered_toppings)
     if customer_toppings in store_toppings:
       return customer_toppings
+    if "," in customer_toppings:
+      print("Please enter toppings one at a time.")
     else:
       print(f"That is not a valid topping. Please choose from: {store_toppings}")
   
