@@ -5,6 +5,8 @@
 #TODO: calculate costs vs sales.
 #TODO: Cash vs credit sales
 #TODO: Delivery system vs store pick up.
+store_toppings = ["mushrooms", "sausage", "done"]
+
 class Pizza:
   def __init__(self, size="", crust="", toppings=None):
     self.size = size
@@ -40,6 +42,14 @@ def calculate_tax(sub_total, sales_tax_rate):
 def calculate_total_price(sub_total, sales_tax_amount):
 
   return sub_total + sales_tax_amount
+
+def get_valid_toppings(ordered_toppings, store_toppings):
+  while True:
+    customer_toppings = input(ordered_toppings)
+    if customer_toppings in store_toppings:
+      return customer_toppings
+    else:
+      print(f"That is not a valid topping. Please choose from: {store_toppings}")
   
 def order_food():
   size = input("What size pizza do you want? (small, medium, large): ")
@@ -48,10 +58,10 @@ def order_food():
   while True:
     #TODO: If someone types in multiple toppings seperated as a comma, program only tallys for 1 topping. Need to fix.
     #TODO: Program repeats the topping input line after every press of 'return'. Need it to be less repetitive.
-    #TODO: Program currently allows anything to be input in topping (ie: you can put shoes as a topping). Need to have users only select from a list of approved toppings.
+    #TODO: Find way to remove the 'done' option from the store_toppings. Doesn't really make sense but keeps the code funcitioning for now.
     #TODO: Extra thoughts: add wings, drinks, and bread items to menu.
     #TODO: Extra thoughts: Add 'out of stock' toppings and items and let customer know if a requested item is out of stock. 
-    topping = input("What toppings would you like? When finished, type 'done'. :") 
+    topping = get_valid_toppings("What toppings would you like? : ", store_toppings)
     if topping.lower() == "done":
       break
     toppings.append(topping)
