@@ -39,9 +39,9 @@ def calculate_tax(sub_total, sales_tax_rate):
 
   return round(sub_total * sales_tax_rate, 2)
 
-def calculate_total_price(sub_total, sales_tax_amount):
+def calculate_total_price(sub_total, sales_tax_amount, delivery_fee=0):
 
-  return sub_total + sales_tax_amount
+  return sub_total + sales_tax_amount + delivery_fee
 
 def get_valid_toppings(ordered_toppings, store_toppings):
   while True:
@@ -69,11 +69,32 @@ def order_food():
   
   return Pizza(size, crust, toppings)
 
+def get_customer_address():
+
+  street = input("Enter street address: ")
+  city = input("Enter city: ")
+  state = input("Enter state: ")
+  zipcode = input("Enter zip code: ")
+
+  return {
+      "street": street,
+      "city": city,
+      "state": state,
+      "zipcode": zipcode
+  }
 
 if __name__ == "__main__":
   print("Welcome to your local pizza restaurant!")
   order = []
   sales_tax_rate = .05
+
+  delivery_option = input("Is this for delivery? (y/n): ")
+
+  if delivery_option == "y":
+    address = get_customer_address()
+    delivery_fee = 2.99
+  if delivery_option == "n":
+    print("Ok. We will prepare your order for pick up in the store.")
 
   while True:
     pizza = order_food()
@@ -94,6 +115,11 @@ if __name__ == "__main__":
 
   print(f"\nSales tax is: ${sales_tax}.")
 
-  total_price = calculate_total_price(sub_total, sales_tax)
+  total_price = calculate_total_price(sub_total, sales_tax, delivery_fee=0)
 
   print(f"\nYour total amount is: ${total_price}")
+
+  if delivery_option == "y":
+    print(f"We will deliver your pizza to {address} soon!")
+  else:
+    print("Your order will be ready for pickup in the store soon!")
