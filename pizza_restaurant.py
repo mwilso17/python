@@ -122,6 +122,8 @@ if __name__ == "__main__":
 
   print(f"\nYour total amount is: ${total_price}")
 
+
+#TODO: prints address as dictionary. Make it print out neater.
   if delivery_option == "y":
     print(f"\nWe will deliver your pizza to {address} soon!")
   else:
