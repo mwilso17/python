@@ -26,6 +26,12 @@ class TankYou:
       self._check_events()
       self.tank.update()
       self.rounds.update()
+
+      # Get rid of off screen rounds.
+      for round in self.rounds.copy():
+        if round.rect.left >= self.screen.get_rect().right:
+          self.rounds.remove(round)
+
       self._update_screen()
 
   def _check_events(self):
