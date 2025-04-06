@@ -4,6 +4,7 @@ import pygame
 
 from settings import Settings
 from tank import Tank
+from ammo import Ammo
 
 class TankYou:
   """Class to manage game."""
@@ -17,12 +18,14 @@ class TankYou:
     pygame.display.set_caption("Tank You")
 
     self.tank = Tank(self)
+    self.rounds = pygame.sprite.Group()
 
   def run_game(self):
     """Start game main loop."""
     while True:
       self._check_events()
       self.tank.update()
+      self.rounds.update()
       self._update_screen()
 
   def _check_events(self):
@@ -45,6 +48,8 @@ class TankYou:
       self.tank.moving_down = True
     if event.key == pygame.K_q:
       sys.exit()
+    if event.key == pygame.K_SPACE:
+      self._fire_bullet()
 
   def _check_keyup_events(self, event):
     """Respond to keyreleases."""
@@ -53,10 +58,17 @@ class TankYou:
     if event.key == pygame.K_DOWN:
       self.tank.moving_down = False
 
+  def _fire_bullet(self):
+    """Create a new round and add it to the group."""
+    new_round = Ammo(self)
+    self.rounds.add(new_round)
+
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
     self.screen.fill(self.settings.bg_color)
     self.tank.blitme()
+    for round in self.rounds.sprites():
+      round.draw_round()
 
     # Makes current render visible.
     pygame.display.flip()

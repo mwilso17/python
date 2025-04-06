@@ -8,3 +8,9 @@ class Settings:
 
     # Player tank speed.
     self.tank_speed = .3
+
+    # Ammo settings.
+    self.ammo_speed = 1.0
+    self.ammo_width = 6
+    self.ammo_height = 6
+    self.ammo_color = (20, 20, 20)
