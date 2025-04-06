@@ -25,13 +25,7 @@ class TankYou:
     while True:
       self._check_events()
       self.tank.update()
-      self.rounds.update()
-
-      # Get rid of off screen rounds.
-      for round in self.rounds.copy():
-        if round.rect.left >= self.screen.get_rect().right:
-          self.rounds.remove(round)
-
+      self._update_rounds()
       self._update_screen()
 
   def _check_events(self):
@@ -55,7 +49,7 @@ class TankYou:
     if event.key == pygame.K_q:
       sys.exit()
     if event.key == pygame.K_SPACE:
-      self._fire_bullet()
+      self._fire_round()
 
   def _check_keyup_events(self, event):
     """Respond to keyreleases."""
@@ -64,10 +58,20 @@ class TankYou:
     if event.key == pygame.K_DOWN:
       self.tank.moving_down = False
 
-  def _fire_bullet(self):
+  def _fire_round(self):
     """Create a new round and add it to the group."""
-    new_round = Ammo(self)
-    self.rounds.add(new_round)
+    if len(self.rounds) < self.settings.ammo_limit:
+      new_round = Ammo(self)
+      self.rounds.add(new_round)
+
+  def _update_rounds(self):
+    """Update position of rounds and delete off screen ones."""
+    self.rounds.update()
+
+    # Get rid of off screen rounds.
+    for round in self.rounds.copy():
+      if round.rect.left >= self.screen.get_rect().right:
+        self.rounds.remove(round)
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""

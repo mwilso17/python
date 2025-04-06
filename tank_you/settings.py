@@ -14,3 +14,4 @@ class Settings:
     self.ammo_width = 6
     self.ammo_height = 6
     self.ammo_color = (20, 20, 20)
+    self.ammo_limit = 3
