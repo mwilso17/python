@@ -13,7 +13,7 @@ class Ammo(Sprite):
 
     # Create a round rect and set its correct position.
     self.rect = pygame.Rect(0, 0, self.settings.ammo_width, self.settings.ammo_height)
-    self.rect.midleft = ty_game.tank.rect.midleft
+    self.rect.midright = ty_game.tank.rect.midright
 
     # Store round position as a decimal value.
     self.x = float(self.rect.x)
