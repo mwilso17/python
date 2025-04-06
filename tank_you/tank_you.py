@@ -22,6 +22,7 @@ class TankYou:
     """Start game main loop."""
     while True:
       self._check_events()
+      self.tank.update()
       self._update_screen()
 
   def _check_events(self):
@@ -29,6 +30,18 @@ class TankYou:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
           sys.exit()
+          
+        elif event.type == pygame.KEYDOWN:
+          if event.key == pygame.K_UP:
+            self.tank.moving_up = True
+          if event.key == pygame.K_DOWN:
+            self.tank.moving_down = True
+
+        elif event.type == pygame.KEYUP:
+          if event.key == pygame.K_UP:
+            self.tank.moving_up = False
+          if event.key == pygame.K_DOWN:
+            self.tank.moving_down = False
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
