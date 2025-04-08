@@ -30,6 +30,7 @@ class TankYou:
       self._check_events()
       self.tank.update()
       self._update_rounds()
+      self._update_enemy()
       self._update_screen()
 
   def _check_events(self):
@@ -81,6 +82,22 @@ class TankYou:
     """Create enemy tank."""
     enemy = Enemy(self)
     self.enemy.add(enemy)
+
+  def _check_enemy_edges(self):
+    """See if enemy has hit edge."""
+    for enemy in self.enemy.sprites():
+      if enemy.check_for_edges():
+        self._change_enemy_direction()
+        break
+
+  def _change_enemy_direction(self):
+    """Change enemy direction if it hits an edge."""
+    self.settings.enemy_direction *= -1
+  
+  def _update_enemy(self):
+    """Update position of enemy."""
+    self._check_enemy_edges()
+    self.enemy.update()
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""

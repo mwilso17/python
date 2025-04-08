@@ -9,6 +9,7 @@ class Enemy(Sprite):
     super().__init__()
     self.screen = ty_game.screen
     self.screen_rect = ty_game.screen.get_rect()
+    self.settings = ty_game.settings
     
     # Load enemy image and set its rect.
     self.image = pygame.image.load('tank_you\images\enemy_tank.bmp')
@@ -19,4 +20,15 @@ class Enemy(Sprite):
 
     # Store enemy exact verticle position.
     self.y = float(self.rect.y)
+
+  def check_for_edges(self):
+    """Return True if enemy hits edge of screen."""
+    screen_rect = self.screen.get_rect()
+    if self.rect.top <= screen_rect.top or self.rect.bottom >= screen_rect.bottom:
+      return True
+
+  def update(self):
+    """Move enemy tank up and down."""
+    self.y -= (self.settings.enemy_speed * self.settings.enemy_direction)
+    self.rect.y = self.y
 

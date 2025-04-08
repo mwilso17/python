@@ -15,3 +15,7 @@ class Settings:
     self.ammo_height = 6
     self.ammo_color = (20, 20, 20)
     self.ammo_limit = 3
+
+    # Enemy settings.
+    self.enemy_speed = .3
+    self.enemy_direction = 1 
