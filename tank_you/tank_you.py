@@ -5,6 +5,7 @@ import pygame
 from settings import Settings
 from tank import Tank
 from ammo import Ammo
+from enemy import Enemy
 
 class TankYou:
   """Class to manage game."""
@@ -19,6 +20,9 @@ class TankYou:
 
     self.tank = Tank(self)
     self.rounds = pygame.sprite.Group()
+    self.enemy = pygame.sprite.Group()
+
+    self._create_enemy()
 
   def run_game(self):
     """Start game main loop."""
@@ -73,12 +77,18 @@ class TankYou:
       if round.rect.left >= self.screen.get_rect().right:
         self.rounds.remove(round)
 
+  def _create_enemy(self):
+    """Create enemy tank."""
+    enemy = Enemy(self)
+    self.enemy.add(enemy)
+
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
     self.screen.fill(self.settings.bg_color)
     self.tank.blitme()
     for round in self.rounds.sprites():
       round.draw_round()
+    self.enemy.draw(self.screen)
 
     # Makes current render visible.
     pygame.display.flip()
