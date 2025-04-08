@@ -78,6 +78,17 @@ class TankYou:
       if round.rect.left >= self.screen.get_rect().right:
         self.rounds.remove(round)
 
+    self._check_round_enemy_collisions()
+
+  def _check_round_enemy_collisions(self):
+    """Respond to round collisions with enemy."""
+    # Check for round collisions with enemy and get rid of enemy if hit.
+    collisions = pygame.sprite.pygame.sprite.groupcollide(self.rounds, self.enemy, True, True)
+
+    if not self.enemy:
+      self.rounds.empty()
+      self._create_enemy()
+
   def _create_enemy(self):
     """Create enemy tank."""
     enemy = Enemy(self)
