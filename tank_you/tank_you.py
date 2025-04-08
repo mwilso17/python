@@ -34,6 +34,7 @@ class TankYou:
       self.tank.update()
       self._update_rounds()
       self._update_enemy()
+      self._enemy_behavior()
       self._update_screen()
 
   def _check_events(self):
@@ -58,7 +59,7 @@ class TankYou:
       sys.exit()
     if event.key == pygame.K_SPACE:
       self._fire_round()
-      self._fire_enemy_round()
+      
 
   def _check_keyup_events(self, event):
     """Respond to keyreleases."""
@@ -66,6 +67,11 @@ class TankYou:
       self.tank.moving_up = False
     if event.key == pygame.K_DOWN:
       self.tank.moving_down = False
+
+  def _enemy_behavior(self):
+    """Determine enemy behavior."""
+    if self.enemy and len(self.enemy_rounds) < 1:
+      self._fire_enemy_round()
 
   def _fire_round(self):
     """Create a new round and add it to the group."""
