@@ -7,6 +7,7 @@ from settings import Settings
 from tank import Tank
 from ammo import Ammo
 from enemy import Enemy
+from enemy_ammo import EnemyAmmo
 
 class TankYou:
   """Class to manage game."""
@@ -22,6 +23,7 @@ class TankYou:
     self.tank = Tank(self)
     self.rounds = pygame.sprite.Group()
     self.enemy = pygame.sprite.Group()
+    self.enemy_rounds = pygame.sprite.Group()
 
     self._create_enemy()
 
@@ -32,6 +34,7 @@ class TankYou:
       self.tank.update()
       self._update_rounds()
       self._update_enemy()
+      self.enemy_rounds.update()
       self._update_screen()
 
   def _check_events(self):
@@ -56,6 +59,7 @@ class TankYou:
       sys.exit()
     if event.key == pygame.K_SPACE:
       self._fire_round()
+      self._fire_enemy_round()
 
   def _check_keyup_events(self, event):
     """Respond to keyreleases."""
@@ -69,6 +73,11 @@ class TankYou:
     if len(self.rounds) < self.settings.ammo_limit:
       new_round = Ammo(self)
       self.rounds.add(new_round)
+
+  def _fire_enemy_round(self):
+    """Create a new round and add it to the group."""
+    new_enemy_round = EnemyAmmo(self)
+    self.enemy_rounds.add(new_enemy_round)
 
   def _update_rounds(self):
     """Update position of rounds and delete off screen ones."""
@@ -118,6 +127,8 @@ class TankYou:
     self.tank.blitme()
     for round in self.rounds.sprites():
       round.draw_round()
+    for enemy_round in self.enemy_rounds.sprites():
+      enemy_round.draw_enemy_round()
     self.enemy.draw(self.screen)
 
     # Makes current render visible.
