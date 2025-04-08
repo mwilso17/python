@@ -34,7 +34,6 @@ class TankYou:
       self.tank.update()
       self._update_rounds()
       self._update_enemy()
-      self.enemy_rounds.update()
       self._update_screen()
 
   def _check_events(self):
@@ -82,11 +81,15 @@ class TankYou:
   def _update_rounds(self):
     """Update position of rounds and delete off screen ones."""
     self.rounds.update()
+    self.enemy_rounds.update()
 
     # Get rid of off screen rounds.
     for round in self.rounds.copy():
       if round.rect.left >= self.screen.get_rect().right:
         self.rounds.remove(round)
+    for enemy_round in self.enemy_rounds.copy():
+      if enemy_round.rect.right <= self.screen.get_rect().left:
+        self.enemy_rounds.remove(enemy_round)
 
     self._check_round_enemy_collisions()
 
