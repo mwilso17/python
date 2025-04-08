@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 
 import pygame
 
@@ -88,6 +89,7 @@ class TankYou:
     if not self.enemy:
       self.rounds.empty()
       self._create_enemy()
+      sleep(1.5)
 
   def _create_enemy(self):
     """Create enemy tank."""
