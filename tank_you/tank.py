@@ -35,3 +35,8 @@ class Tank:
   def blitme(self):
     """Draw tank at current location."""
     self.screen.blit(self.image, self.rect)
+
+  def reset(self):
+    """Center tank."""
+    self.rect.midleft = self.screen_rect.midleft
+    self.y = float(self.rect.y)

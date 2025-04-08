@@ -8,6 +8,7 @@ class Settings:
 
     # Player tank speed.
     self.tank_speed = .3
+    self.player_health = 3
 
     # Ammo settings.
     self.ammo_speed = 1.0

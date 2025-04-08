@@ -4,6 +4,7 @@ from time import sleep
 import pygame
 
 from settings import Settings
+from game_stats import GameStats
 from tank import Tank
 from ammo import Ammo
 from enemy import Enemy
@@ -19,6 +20,9 @@ class TankYou:
 
     self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     pygame.display.set_caption("Tank You")
+
+    # Instance to store game stats.
+    self.stats = GameStats(self)
 
     self.tank = Tank(self)
     self.rounds = pygame.sprite.Group()
@@ -102,7 +106,7 @@ class TankYou:
   def _check_round_enemy_collisions(self):
     """Respond to round collisions with enemy."""
     # Check for round collisions with enemy and get rid of enemy if hit.
-    collisions = pygame.sprite.pygame.sprite.groupcollide(self.rounds, self.enemy, True, True)
+    collisions = pygame.sprite.groupcollide(self.rounds, self.enemy, True, True)
 
     if not self.enemy:
       self.rounds.empty()
@@ -129,6 +133,23 @@ class TankYou:
     """Update position of enemy."""
     self._check_enemy_edges()
     self.enemy.update()
+
+    # Look for enemy round collisions with player tank.
+    if pygame.sprite.pygame.sprite.spritecollideany(self.tank, self.enemy_rounds):
+      self._player_hit()
+
+  def _player_hit(self):
+    """Respond to player being hit by enemy round."""
+    self.stats.health_left -= 1
+
+    self.enemy.empty()
+    self.rounds.empty()
+    self.enemy_rounds.empty()
+
+    self._create_enemy()
+    self.tank.reset()
+
+    sleep(1)
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
