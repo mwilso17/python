@@ -65,7 +65,15 @@ class TankYou:
   def _check_start_button(self, mouse_pos):
     """Start new game when player clicks Start button."""
     if self.start_button.rect.collidepoint(mouse_pos):
+      self.stats.reset_stats()
       self.stats.game_active = True
+
+      self.enemy.empty()
+      self.rounds.empty()
+      self.enemy_rounds.empty()
+
+      self._create_enemy()
+      self.tank.blitme()
 
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
