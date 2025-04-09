@@ -64,7 +64,8 @@ class TankYou:
 
   def _check_start_button(self, mouse_pos):
     """Start new game when player clicks Start button."""
-    if self.start_button.rect.collidepoint(mouse_pos):
+    button_clicked = self.start_button.rect.collidepoint(mouse_pos)
+    if button_clicked and not self.stats.game_active:
       self.stats.reset_stats()
       self.stats.game_active = True
 
@@ -74,6 +75,8 @@ class TankYou:
 
       self._create_enemy()
       self.tank.blitme()
+
+      pygame.mouse.set_visible(False)
 
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
