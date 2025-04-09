@@ -10,3 +10,4 @@ class GameStats:
 
   def reset_stats(self):
     self.health_left = self.settings.player_health
+    self.score = 0

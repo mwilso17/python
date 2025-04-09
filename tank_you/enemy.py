@@ -24,7 +24,7 @@ class Enemy(Sprite):
   def check_for_edges(self):
     """Return True if enemy hits edge of screen."""
     screen_rect = self.screen.get_rect()
-    if self.rect.top <= screen_rect.top or self.rect.bottom >= screen_rect.bottom:
+    if self.rect.top <= screen_rect.top + 50 or self.rect.bottom >= screen_rect.bottom:
       return True
 
   def update(self):

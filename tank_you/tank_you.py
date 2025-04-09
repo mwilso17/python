@@ -5,6 +5,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 from tank import Tank
 from ammo import Ammo
@@ -22,8 +23,9 @@ class TankYou:
     self.screen = pygame.display.set_mode((self.settings.screen_width, self.settings.screen_height))
     pygame.display.set_caption("Tank You")
 
-    # Instance to store game stats.
+    # Instance to store game stats and scoreboard.
     self.stats = GameStats(self)
+    self.sb = Scoreboard(self)
 
     self.tank = Tank(self)
     self.rounds = pygame.sprite.Group()
@@ -191,6 +193,9 @@ class TankYou:
     for enemy_round in self.enemy_rounds.sprites():
       enemy_round.draw_enemy_round()
     self.enemy.draw(self.screen)
+
+    # Draw score info.
+    self.sb.show_score()
 
     if not self.stats.game_active:
       self.start_button.draw_button()

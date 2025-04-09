@@ -23,7 +23,7 @@ class Tank:
 
   def update(self):
     """Update tank position based on movement flags."""
-    if self.moving_up and self.rect.y > 0:
+    if self.moving_up and self.rect.y > 50:
       self.y -= self.settings.tank_speed
     if self.moving_down and (self.rect.y + 50) < self.screen_rect.bottom:
       self.y += self.settings.tank_speed
