@@ -72,6 +72,7 @@ class TankYou:
       self.stats.reset_stats()
       self.stats.game_active = True
       self.sb.prep_score()
+      self.sb.prep_health()
 
       self.enemy.empty()
       self.rounds.empty()
@@ -177,6 +178,7 @@ class TankYou:
     """Respond to player being hit by enemy round."""
     if self.stats.health_left > 0:
       self.stats.health_left -= 1
+      self.sb.prep_health()
 
       self.enemy.empty()
       self.rounds.empty()

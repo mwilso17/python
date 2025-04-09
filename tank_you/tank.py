@@ -1,10 +1,12 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Tank:
+class Tank(Sprite):
   """Class manages player tank."""
 
   def __init__(self, ty_game):
     """Initialize tank and place it on the center left of the screen"""
+    super().__init__()
     self.screen = ty_game.screen
     self.settings = ty_game.settings
     self.screen_rect = ty_game.screen.get_rect()
