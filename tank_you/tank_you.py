@@ -188,6 +188,7 @@ class TankYou:
       sleep(1)
     else:
       self.stats.game_active = False
+      pygame.mouse.set_visible(True)
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
