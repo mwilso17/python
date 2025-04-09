@@ -35,10 +35,13 @@ class TankYou:
     """Start game main loop."""
     while True:
       self._check_events()
-      self.tank.update()
-      self._update_rounds()
-      self._update_enemy()
-      self._enemy_behavior()
+
+      if self.stats.game_active:
+        self.tank.update()
+        self._update_rounds()
+        self._update_enemy()
+        self._enemy_behavior()
+
       self._update_screen()
 
   def _check_events(self):
@@ -140,16 +143,19 @@ class TankYou:
 
   def _player_hit(self):
     """Respond to player being hit by enemy round."""
-    self.stats.health_left -= 1
+    if self.stats.health_left > 0:
+      self.stats.health_left -= 1
 
-    self.enemy.empty()
-    self.rounds.empty()
-    self.enemy_rounds.empty()
+      self.enemy.empty()
+      self.rounds.empty()
+      self.enemy_rounds.empty()
 
-    self._create_enemy()
-    self.tank.reset()
+      self._create_enemy()
+      self.tank.reset()
 
-    sleep(1)
+      sleep(1)
+    else:
+      self.stats.game_active = False
 
   def _update_screen(self):
     """Update images on screen and flip to new screen."""
