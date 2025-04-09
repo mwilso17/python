@@ -66,6 +66,7 @@ class TankYou:
     """Start new game when player clicks Start button."""
     button_clicked = self.start_button.rect.collidepoint(mouse_pos)
     if button_clicked and not self.stats.game_active:
+      self.settings.initialize_dynamic_settings()
       self.stats.reset_stats()
       self.stats.game_active = True
 
@@ -135,7 +136,9 @@ class TankYou:
 
     if not self.enemy:
       self.rounds.empty()
+      self.enemy_rounds.empty()
       self._create_enemy()
+      self.settings.increase_speed()
       sleep(1.5)
 
   def _create_enemy(self):

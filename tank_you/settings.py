@@ -18,5 +18,17 @@ class Settings:
     self.ammo_limit = 3
 
     # Enemy settings.
-    self.enemy_speed = .3
     self.enemy_direction = 1 
+
+    # Speed up scale of game.
+    self.speedup_scale = 1.1
+
+    self.initialize_dynamic_settings()
+
+  def initialize_dynamic_settings(self):
+    """Initialize settings that change when enemy is defeated."""
+    self.enemy_speed = .3
+
+  def increase_speed(self):
+    """Increase speed of game."""
+    self.enemy_speed *= self.speedup_scale
