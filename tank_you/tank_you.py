@@ -71,6 +71,7 @@ class TankYou:
       self.settings.initialize_dynamic_settings()
       self.stats.reset_stats()
       self.stats.game_active = True
+      self.sb.prep_score()
 
       self.enemy.empty()
       self.rounds.empty()
@@ -135,6 +136,10 @@ class TankYou:
     """Respond to round collisions with enemy."""
     # Check for round collisions with enemy and get rid of enemy if hit.
     collisions = pygame.sprite.groupcollide(self.rounds, self.enemy, True, True)
+
+    if collisions:
+      self.stats.score += self.settings.enemy_points
+      self.sb.prep_score()
 
     if not self.enemy:
       self.rounds.empty()

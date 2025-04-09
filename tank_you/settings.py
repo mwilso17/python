@@ -19,6 +19,7 @@ class Settings:
 
     # Enemy settings.
     self.enemy_direction = 1 
+    self.enemy_points = 1
 
     # Speed up scale of game.
     self.speedup_scale = 1.1
