@@ -5,6 +5,7 @@ import pygame
 
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from tank import Tank
 from ammo import Ammo
 from enemy import Enemy
@@ -31,6 +32,9 @@ class TankYou:
 
     self._create_enemy()
 
+    # Make the start button
+    self.start_button = Button(self, "Start")
+
   def run_game(self):
     """Start game main loop."""
     while True:
@@ -54,7 +58,14 @@ class TankYou:
           self._check_keydown_events(event)
         elif event.type == pygame.KEYUP:
           self._check_keyup_events(event)
-          
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+          mouse_pos = pygame.mouse.get_pos()
+          self._check_start_button(mouse_pos)
+
+  def _check_start_button(self, mouse_pos):
+    """Start new game when player clicks Start button."""
+    if self.start_button.rect.collidepoint(mouse_pos):
+      self.stats.game_active = True
 
   def _check_keydown_events(self, event):
     """Respond to keypresses."""
@@ -166,6 +177,9 @@ class TankYou:
     for enemy_round in self.enemy_rounds.sprites():
       enemy_round.draw_enemy_round()
     self.enemy.draw(self.screen)
+
+    if not self.stats.game_active:
+      self.start_button.draw_button()
 
     # Makes current render visible.
     pygame.display.flip()
