@@ -1,4 +1,5 @@
 # This program saves user names into a file. The names from this file can later be used to create new characters.
+# TODO: validation of names, auto capitalization and white space strip, don't add repeated names to txt files
 
 first_name_file = open("rpg_helper\\first_names.txt", "a")
 last_name_file = open("rpg_helper\last_names.txt", "a")
