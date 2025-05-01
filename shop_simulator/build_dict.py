@@ -18,6 +18,7 @@ def build_inventory(inventory_file, divider = ","):
     print("File not found")
   return inventory_dict
 
+# TODO: check if product is in stock before decrementing inventory and print message stating if something is out of stock. 
 def decrease_inventory(inventory, product_sold):
   if product_sold in inventory:
     old_quantity = int(inventory[product_sold][1])
