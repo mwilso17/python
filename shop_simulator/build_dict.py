@@ -1,11 +1,11 @@
 # This program builds a dictionary from the inventory.txt file in order for it to be used to register sales.
 
-inventory_file = open("shop_simulator\inventory.txt", "r")
+inventory_file = "shop_simulator\inventory.txt"
 
 def build_inventory(inventory_file, divider = ","):
   inventory_dict = {}
   try:
-    with inventory_file as inventory:
+    with open(inventory_file, "r") as inventory:
       for item in inventory:
         item = item.strip()
         product_info = item.split(',')
@@ -18,8 +18,25 @@ def build_inventory(inventory_file, divider = ","):
     print("File not found")
   return inventory_dict
 
+def decrease_inventory(inventory, product_sold):
+  if product_sold in inventory:
+    old_quantity = int(inventory[product_sold][1])
+    new_quantity = str(old_quantity - 1)
+    inventory[product_sold][1] = new_quantity
 
-# Delete below when not testing. Will be used in the main cash register program.
+    with open(inventory_file, "w") as file:
+      for key, value in inventory.items():
+        file.write(f"{key} , {value[0]} , {value[1]} \n")
+        
+  else:
+    print(f"We either don't carry {product_sold} or it is out of stock.")
+
+  
+
+
+
+
+# Delete below when not testing. This is used for testing purposes
 current_inventory = build_inventory(inventory_file)
 
 if current_inventory:
@@ -27,3 +44,17 @@ if current_inventory:
     print(f"{key}: {value[0]} and {value[1]}")
 else:
   print("No data found")
+print("\n")
+
+decrease_inventory(current_inventory, "Burger")
+decrease_inventory(current_inventory, "Soda")
+decrease_inventory(current_inventory, "Soda")
+decrease_inventory(current_inventory, "Fries")
+decrease_inventory(current_inventory, "Burger")
+
+if current_inventory:
+  for key, value in current_inventory.items():
+    print(f"{key}: {value[0]} and {value[1]}")
+else:
+  print("No data found")
+print("\n")
