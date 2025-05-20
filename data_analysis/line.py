@@ -5,6 +5,7 @@ squares = [1, 4, 9, 16, 25]
 
 fig, ax = plt.subplots()
 ax.plot(input, squares)
+ax.scatter(input, squares, s=100)
 
 ax.set_title("Square value table")
 ax.set_xlabel("Inputs")
