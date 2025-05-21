@@ -3,7 +3,7 @@ from plotly import offline
 
 from dice import Die
 
-die_1 = Die(20)
+die_1 = Die()
 die_2 = Die()
 
 results = []
