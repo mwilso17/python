@@ -104,7 +104,8 @@ class TankYou:
 
   def _enemy_behavior(self):
     """Determine enemy behavior."""
-    if self.enemy and len(self.enemy_rounds) < 1:
+    start_time = pygame.time.get_ticks()
+    if self.enemy and (len(self.enemy_rounds) < self.stats.score + 1) and (start_time % 250 == 0):
       self._fire_enemy_round()
 
   def _fire_round(self):
