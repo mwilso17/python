@@ -13,7 +13,6 @@ class Settings:
     self.player_health = 3
 
     # Ammo settings.
-    self.ammo_speed = 1.0
     self.ammo_width = 6
     self.ammo_height = 6
     self.ammo_color = (20, 20, 20)
@@ -30,9 +29,15 @@ class Settings:
   def initialize_dynamic_settings(self):
     """Initialize settings that change when enemy is defeated."""
     self.enemy_speed = .3
-    self.enemy_direction = 1 
+    self.enemy_direction = 1
+    self.ammo_speed = .75
 
   def increase_speed(self):
     """Increase speed of game."""
-    self.enemy_speed *= self.speedup_scale
     self.enemy_direction *= choice([-1, 1])
+
+    if self.enemy_speed <= 1.3:
+      self.enemy_speed *= self.speedup_scale
+    
+    if self.ammo_speed <= 2.5:
+      self.ammo_speed *= self.speedup_scale
