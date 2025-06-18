@@ -1,3 +1,5 @@
+from random import choice
+
 class Settings:
   """This class stores the settings for Tank You."""
 
@@ -18,7 +20,6 @@ class Settings:
     self.ammo_limit = 3
 
     # Enemy settings.
-    self.enemy_direction = 1 
     self.enemy_points = 1
 
     # Speed up scale of game.
@@ -29,7 +30,9 @@ class Settings:
   def initialize_dynamic_settings(self):
     """Initialize settings that change when enemy is defeated."""
     self.enemy_speed = .3
+    self.enemy_direction = 1 
 
   def increase_speed(self):
     """Increase speed of game."""
     self.enemy_speed *= self.speedup_scale
+    self.enemy_direction *= choice([-1, 1])

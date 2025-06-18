@@ -17,6 +17,10 @@ START button must be clicked in order for a new game to start.
 
 Version notes:
 
+V1.1.0: Updated enemy behavior to fire on a timed interval and to have more rounds on 
+        screen. Max number of enemy rounds on screen is based on player score.
+        Enemies now change direction at random after being defeated.
+
 V1.0.0: Player speed is fixed. Player can be hit 4 total times before they lose.
         Player can have 3 on screen rounds at a time. Enemy tanks increase speed
         after being defeated. Enemy tanks fire rounds at player at fixed intervals.

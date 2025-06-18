@@ -12,6 +12,7 @@ from ammo import Ammo
 from enemy import Enemy
 from enemy_ammo import EnemyAmmo
 
+
 class TankYou:
   """Class to manage game."""
 
@@ -105,7 +106,7 @@ class TankYou:
   def _enemy_behavior(self):
     """Determine enemy behavior."""
     start_time = pygame.time.get_ticks()
-    if self.enemy and (len(self.enemy_rounds) < self.stats.score + 1) and (start_time % 250 == 0):
+    if self.enemy and (len(self.enemy_rounds) < ((self.stats.score / 3) + 1)) and (start_time % 250 == 0):
       self._fire_enemy_round()
 
   def _fire_round(self):
