@@ -48,7 +48,7 @@ class Scoreboard:
 
   def prep_version(self):
     """Turn version into a rendered image."""
-    version = "v1.0.0"
+    version = "v1.1.0"
     self.version_image = self.font.render(version, True, self.text_color, self.settings.bg_color)
 
     # Center version at top middle of screen.

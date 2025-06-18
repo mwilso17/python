@@ -19,7 +19,9 @@ Version notes:
 
 V1.1.0: Updated enemy behavior to fire on a timed interval and to have more rounds on 
         screen. Max number of enemy rounds on screen is based on player score.
-        Enemies now change direction at random after being defeated.
+        Enemies now change direction at random after being defeated. Enemy speed 
+        now capped. Both player and enemy ammo travels faster after each enemy is
+        defeated, both ammo types are capped.
 
 V1.0.0: Player speed is fixed. Player can be hit 4 total times before they lose.
         Player can have 3 on screen rounds at a time. Enemy tanks increase speed
