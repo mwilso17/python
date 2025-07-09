@@ -45,9 +45,10 @@ time_int = int(reading_time)
 
 time_to_finish = word_count // (wmp_int * time_int)
 
-print(f"There are approximately {word_count} words in this text.")
-print(f"You said your reading speed was {wmp_int} words per minute and you would plan to read {time_int} minutes per day.")
-print(f"It will take you about {time_to_finish} days to finish this text.")
+def time_to_read():
+  print(f"There are approximately {word_count} words in this text.")
+  print(f"You said your reading speed was {wmp_int} words per minute and you would plan to read {time_int} minutes per day.")
+  print(f"It will take you about {time_to_finish} days to finish this text.")
 
 """
 print("The most common words and their frequency in appearance are: ")
@@ -62,3 +63,5 @@ for word, frequency in least_common:
   else:
     pass
 """
+
+time_to_read()
