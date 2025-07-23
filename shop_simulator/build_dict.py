@@ -20,7 +20,8 @@ def build_inventory(inventory_file, divider = ","):
 
 # TODO: check if product is in stock before decrementing inventory and print message stating if something is out of stock. 
 def decrease_inventory(inventory, product_sold):
-  if product_sold in inventory:
+  current_quantity = int(inventory[product_sold][1])
+  if product_sold in inventory and current_quantity > 0:
     old_quantity = int(inventory[product_sold][1])
     new_quantity = str(old_quantity - 1)
     inventory[product_sold][1] = new_quantity
@@ -28,9 +29,12 @@ def decrease_inventory(inventory, product_sold):
     with open(inventory_file, "w") as file:
       for key, value in inventory.items():
         file.write(f"{key} , {value[0]} , {value[1]} \n")
+
+  elif current_quantity == 0:
+    print(f"We are out of {product_sold}. Please check back later.")
         
   else:
-    print(f"We either don't carry {product_sold} or it is out of stock.")
+    print(f"We either don't carry {product_sold}.")
 
   
 
